@@ -13,6 +13,10 @@ spec:
       labels:
         app: web-consumer
     spec:
+      hostAliases:
+      - ip: "10.152.183.26"
+        hostnames:
+        - "auth-db"
       containers:
       - command:
         - sh
