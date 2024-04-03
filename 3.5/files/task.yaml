@@ -13,10 +13,6 @@ spec:
       labels:
         app: web-consumer
     spec:
-      hostAliases:
-      - ip: "10.152.183.26"
-        hostnames:
-        - "auth-db"
       containers:
       - command:
         - sh
@@ -24,6 +20,12 @@ spec:
         - while true; do curl auth-db; sleep 5; done
         image: radial/busyboxplus:curl
         name: busybox
+      dnsPolicy: "None"
+      dnsConfig:
+        nameservers:
+          - 10.152.183.26
+        searches:
+          - auth-db.data.svc.cluster.local
 ---
 apiVersion: apps/v1
 kind: Deployment
