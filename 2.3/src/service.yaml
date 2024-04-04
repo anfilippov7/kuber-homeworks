@@ -1,16 +1,13 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: myapp-service
+  name: myservice
 spec:
   selector:
-    app: myapp-pod
+    app: myapp
+  type: NodePort
   ports:
-    - name: nginx-container
-      protocol: TCP
+    - name: web
       port: 80
+      nodePort: 32000
       targetPort: 80
-    - name: multitool-container
-      protocol: TCP
-      port: 1180
-      targetPort: 1180
